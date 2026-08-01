@@ -1,0 +1,43 @@
+# Timekeeper Daily
+
+用于自动启动游戏，并通过全屏图像匹配完成登录流程。
+
+- [x] 启动1999客户端
+- [x] 成功login
+- [ ] 能完美进入homepage
+- [x] 能退出
+- [ ] 建立从homepage进入 **入场** 的操作链
+- [ ] 建立从 **入场** 到 **资源** 和 **洞悉** 的操作链
+- [ ] 建立从 **资源** 到 **铸币**，**尘埃**，**意志** 的操作链
+- [ ] 建立完善战斗接口（进入，等待，退出到homepage）
+- [ ] 建立领取任务奖励接口（日活，周活）
+- [ ] 建立点唱机任务及奖励领取接口
+
+## 环境
+
+本地环境：
+
+- Windows 11
+- Python 3.10
+
+安装依赖：
+
+```powershell
+python -m pip install --upgrade pip
+pip install pywin32 mss opencv-python numpy pydirectinput pyyaml
+```
+
+## 运行
+
+```powershell
+python main.py
+```
+
+## 目标图片
+
+目标图片放在 `targets` 目录中：
+
+- `start.png`: 开始游戏按钮
+- `home_page.png`: 游戏主页画面
+
+当前识别逻辑会直接截取全屏，并按照目标图片的原始尺寸从截图左上角开始滑动匹配。目标图尺寸应尽量来自同一屏幕缩放比例下的截图。

@@ -1,0 +1,14 @@
+launch:
+  launch_keyword: "1999"
+  close_keyword:  "MuMu模拟器"
+
+window:
+  title_keyword:  "MuMu模拟器"
+
+
+tasks:
+  login:
+    LOGIN_TARGET:     "login.png"
+    LOGIN_THRESHOLD:  0.90
+    LOGIN_TIMEOUT:    120.0
+    LOGIN_INTERVAL:   3
