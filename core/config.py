@@ -30,6 +30,4 @@ def load_config(config_path: str | Path) -> dict:
 
     return config
 
-if __name__ == "__main__":
-    config = load_config("config.yaml")
-    print(config)
+config = load_config("config.yaml")

@@ -7,8 +7,40 @@ window:
 
 
 tasks:
+  find:
+    return:
+      PATH: "button/return.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+    home:
+      PATH: "button/home.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+    enter:
+      PATH: "button/enter.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+    resource:
+      PATH: "button/resource.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+    PA:
+      PATH: "button/PA.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+    TP:
+      PATH: "button/TP.png"
+      THRESHOLD: 0.90
+      TIMEOUT: 5.0
+      INTERVAL: 0.5
+
   login:
     LOGIN_TARGET:     "login.png"
     LOGIN_THRESHOLD:  0.90
     LOGIN_TIMEOUT:    120.0
-    LOGIN_INTERVAL:   3
+    LOGIN_INTERVAL:   1

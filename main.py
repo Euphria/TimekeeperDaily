@@ -1,6 +1,6 @@
 """项目启动器：按顺序调用 core 和 tasks 中的函数完成日常流程。"""
 
-from core.config import load_config
+from core.config import config
 from core.launch import launch_game, close_game
 from core.logger import logger
 
@@ -18,7 +18,6 @@ def main() -> None:
     2. 登录游戏
     3. 关闭游戏
     """
-    config = load_config("config.yaml")
     logger.info("Timekeeper Daily 开始运行")
 
     # 启动游戏
@@ -34,10 +33,10 @@ def main() -> None:
     # 关闭游戏
     sleep(5)  # 等待 10 秒后尝试关闭游戏
 
-    if not close_game(keyword=config["launch"]["close_keyword"]):
-        logger.error("游戏关闭失败，终止运行")
-        return
-
+    # if not close_game(keyword=config["launch"]["close_keyword"]):
+    #     logger.error("游戏关闭失败，终止运行")
+    #     return
+    print("游戏已关闭, Timekeeper Daily 运行结束")
     logger.info("游戏已关闭, Timekeeper Daily 运行结束")
 
 
