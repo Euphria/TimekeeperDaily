@@ -21,7 +21,7 @@ def main() -> None:
     logger.info("Timekeeper Daily 开始运行")
 
     # 启动游戏
-    if not launch_game(keyword=config["launch"]["launch_keyword"]):
+    if not launch_game(keyword=config["core"]["launch"]["launch_keyword"]):
         logger.error("游戏启动失败，终止运行")
         return
 
@@ -33,7 +33,7 @@ def main() -> None:
     # 关闭游戏
     sleep(5)  # 等待 10 秒后尝试关闭游戏
 
-    # if not close_game(keyword=config["launch"]["close_keyword"]):
+    # if not close_game(keyword=config["core"]["launch"]["close_keyword"]):
     #     logger.error("游戏关闭失败，终止运行")
     #     return
     print("游戏已关闭, Timekeeper Daily 运行结束")

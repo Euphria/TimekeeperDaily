@@ -1,9 +1,15 @@
-launch:
-  launch_keyword: "1999"
-  close_keyword:  "MuMu模拟器"
 
-window:
-  title_keyword:  "MuMu模拟器"
+core:
+  launch:
+    launch_keyword: "1999"
+    close_keyword:  "MuMu模拟器"
+  window:
+    title_keywords:
+      - "MuMu模拟器"
+  actions:
+    CLICK_RETRY_INTERVAL: 1.0
+    SCREEN_CHANGE_THRESHOLD: 0.30
+    PIXEL_CHANGE_TOLERANCE: 10
 
 
 tasks:
@@ -20,22 +26,52 @@ tasks:
       INTERVAL: 0.5
     enter:
       PATH: "button/enter.png"
-      THRESHOLD: 0.90
+      THRESHOLD: 0.80
       TIMEOUT: 5.0
       INTERVAL: 0.5
-    resource:
-      PATH: "button/resource.png"
-      THRESHOLD: 0.90
+      resource:
+        PATH: "button/enter/resource.png"
+        THRESHOLD: 0.80
+        TIMEOUT: 5.0
+        INTERVAL: 0.5
+        PA:
+          PATH: "button/enter/resource/PA.png"
+          THRESHOLD: 0.80
+          TIMEOUT: 5.0
+          INTERVAL: 0.5
+        MA:
+          PATH: "button/enter/resource/MA.png"
+          THRESHOLD: 0.80
+          TIMEOUT: 5.0
+          INTERVAL: 0.5
+          "06":
+            PATH: "button/enter/resource/MA/06.png"
+            THRESHOLD: 0.80
+            TIMEOUT: 5.0
+            INTERVAL: 0.5
+        TP:
+          PATH: "button/enter/resource/TP.png"
+          THRESHOLD: 0.80
+          TIMEOUT: 5.0
+          INTERVAL: 0.5
+          "06":
+            PATH: "button/enter/resource/TP/06.png"
+            THRESHOLD: 0.80
+            TIMEOUT: 5.0
+            INTERVAL: 0.5
+    replay:
+      PATH: "button/replay.png"
+      THRESHOLD: 0.80
       TIMEOUT: 5.0
       INTERVAL: 0.5
-    PA:
-      PATH: "button/PA.png"
-      THRESHOLD: 0.90
+    start:
+      PATH: "button/start.png"
+      THRESHOLD: 0.80
       TIMEOUT: 5.0
       INTERVAL: 0.5
-    TP:
-      PATH: "button/TP.png"
-      THRESHOLD: 0.90
+    victory:
+      PATH: "button/victory.png"
+      THRESHOLD: 0.80
       TIMEOUT: 5.0
       INTERVAL: 0.5
 

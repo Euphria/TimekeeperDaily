@@ -30,4 +30,5 @@ def load_config(config_path: str | Path) -> dict:
 
     return config
 
-config = load_config("config.yaml")
+CONFIG_PATH = Path(__file__).resolve().parent.parent / "config.yaml"
+config = load_config(CONFIG_PATH)

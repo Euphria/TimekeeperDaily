@@ -57,18 +57,16 @@ def login_game(config: dict) -> bool:
 
 if __name__ == "__main__":
     # 仅用于测试 login_game 函数
-    from core.config import load_config
+    from core.config import config as app_config
     from core.launch import launch_game
     from core.window import list_visible_windows, activate_window, find_window
 
-    config = load_config("config.yaml")
-    
     # 如果没有启动游戏，则先启动游戏
-    window = find_window(title_keywords=config["window"]["title_keyword"])
+    window = find_window(title_keywords=app_config["core"]["window"]["title_keywords"])
     if not window:
         print("未检测到游戏窗口，尝试启动游戏")
-        launch_game(keyword=config["launch"]["launch_keyword"])
+        launch_game(keyword=app_config["core"]["launch"]["launch_keyword"])
     else:
         print("已检测到游戏窗口, 窗口置顶, 直接开始login流程")
         activate_window(window)
-    login_game(config["tasks"]["login"])
+    login_game(app_config["tasks"]["login"])
