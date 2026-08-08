@@ -76,7 +76,7 @@ def is_usable_window(
     return window.width >= min_width and window.height >= min_height
 
 
-def find_window(
+def find_open_window(
     title_keywords: list[str] = ["MuMu模拟器"],
     min_width: int = MIN_WINDOW_WIDTH,
     min_height: int = MIN_WINDOW_HEIGHT,
@@ -115,7 +115,7 @@ def wait_for_game_window(
     start_time = time.monotonic()
 
     while time.monotonic() - start_time < timeout:
-        window = find_window(
+        window = find_open_window(
             min_width=min_width,
             min_height=min_height,
         )
@@ -169,7 +169,7 @@ if __name__ == "__main__":
     from core.capture import capture_window
 
     lists = list_visible_windows()
-    window = find_window(title_keywords=["MuMu模拟器"])
+    window = find_open_window(title_keywords=["MuMu模拟器"])
     print(f"找到窗口: {window}")
 
     def show_window(window: WindowInfo) -> None:

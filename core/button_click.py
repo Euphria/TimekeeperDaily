@@ -19,7 +19,7 @@ def click_return(
     :return: 是否成功点击返回按钮
     """
     logger.info("查找并点击返回按钮")
-    config_find_return = config["tasks"]["find"]["return"]
+    config_find_return = config["tasks"]["return"]
     return find_and_click(
         target_path=config_find_return["PATH"],
         threshold=config_find_return["THRESHOLD"],
@@ -34,7 +34,7 @@ def click_home() -> bool:
     :return: 是否成功点击主页按钮
     """
     logger.info("查找并点击主页按钮")
-    config_find_home = config["tasks"]["find"]["home"]
+    config_find_home = config["tasks"]["home"]
     return find_and_click(
         target_path=config_find_home["PATH"],
         threshold=config_find_home["THRESHOLD"],
@@ -49,7 +49,7 @@ def click_enter() -> bool:
     :return: 是否成功点击"入场"按钮
     """
     logger.info("查找并点击\"入场\"按钮")
-    config_find_enter = config["tasks"]["find"]["enter"]
+    config_find_enter = config["tasks"]["enter"]
     return find_and_click(
         target_path=config_find_enter["PATH"],
         threshold=config_find_enter["THRESHOLD"],
@@ -57,66 +57,11 @@ def click_enter() -> bool:
         interval=config_find_enter["INTERVAL"]
     )
 
-def click_resource() -> bool:
-    """
-    查找并点击"资源"按钮。
-
-    :return: 是否成功点击"资源"按钮
-    """
-    logger.info("查找并点击\"资源\"按钮")
-    config_find_resource = config["tasks"]["find"]["enter"]["resource"]
-    return find_and_click(
-        target_path=config_find_resource["PATH"],
-        threshold=config_find_resource["THRESHOLD"],
-        timeout=config_find_resource["TIMEOUT"],
-        interval=config_find_resource["INTERVAL"]
-    )
-
-def click_PA() -> bool:
-    """
-    查找并点击"意志解析"按钮。
-
-    :return: 是否成功点击"意志解析"按钮
-    """
-    logger.info("查找并点击\"意志解析\"按钮")
-    config_find_PA = config["tasks"]["find"]["enter"]["resource"]["PA"]
-    return find_and_click(
-        target_path=config_find_PA["PATH"],
-        threshold=config_find_PA["THRESHOLD"],
-        timeout=config_find_PA["TIMEOUT"],
-        interval=config_find_PA["INTERVAL"]
-    )
-
-def click_MA() -> bool:
-    """查找并点击“铸币美学”按钮。"""
-    logger.info("查找并点击\"铸币美学\"按钮")
-    config_find_MA = config["tasks"]["find"]["enter"]["resource"]["MA"]
-    return find_and_click(
-        target_path=config_find_MA["PATH"],
-        threshold=config_find_MA["THRESHOLD"],
-        timeout=config_find_MA["TIMEOUT"],
-        interval=config_find_MA["INTERVAL"]
-    )
-
-def click_TP() -> bool:
-    """
-    查找并点击"尘埃运动"按钮。
-
-    :return: 是否成功点击"尘埃运动"按钮
-    """
-    logger.info("查找并点击\"尘埃运动\"按钮")
-    config_find_TP = config["tasks"]["find"]["enter"]["resource"]["TP"]
-    return find_and_click(
-        target_path=config_find_TP["PATH"],
-        threshold=config_find_TP["THRESHOLD"],
-        timeout=config_find_TP["TIMEOUT"],
-        interval=config_find_TP["INTERVAL"]
-    )
 
 def click_replay() -> bool:
     """查找并点击“再来一次”按钮。"""
     logger.info("查找并点击\"再来一次\"按钮")
-    config_find_replay = config["tasks"]["find"]["replay"]
+    config_find_replay = config["tasks"]["replay"]
     return find_and_click(
         target_path=config_find_replay["PATH"],
         threshold=config_find_replay["THRESHOLD"],
@@ -127,7 +72,7 @@ def click_replay() -> bool:
 def click_start() -> bool:
     """查找并点击“开始”按钮。"""
     logger.info("查找并点击\"开始\"按钮")
-    config_find_start = config["tasks"]["find"]["start"]
+    config_find_start = config["tasks"]["start"]
     return find_and_click(
         target_path=config_find_start["PATH"],
         threshold=config_find_start["THRESHOLD"],
@@ -138,7 +83,7 @@ def click_start() -> bool:
 def click_victory() -> bool:
     """查找并点击“胜利”按钮。"""
     logger.info("查找并点击\"胜利\"按钮")
-    config_find_victory = config["tasks"]["find"]["victory"]
+    config_find_victory = config["tasks"]["victory"]
     return find_and_click(
         target_path=config_find_victory["PATH"],
         threshold=config_find_victory["THRESHOLD"],

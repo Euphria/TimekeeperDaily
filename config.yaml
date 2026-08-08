@@ -1,3 +1,8 @@
+# 全局参数
+All_THRESHOLD: &all_threshold 0.75
+ALL_TIMEOUT: &all_timeout 10.0
+ALL_INTERVAL: &all_interval 0.3
+
 
 core:
   launch:
@@ -13,70 +18,117 @@ core:
 
 
 tasks:
-  find:
-    return:
-      PATH: "button/return.png"
-      THRESHOLD: 0.90
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
-    home:
-      PATH: "button/home.png"
-      THRESHOLD: 0.90
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
+
+  return:
+    PATH: "button/return.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+  home:
+    PATH: "button/home.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+
+  replay:
+    PATH: "button/replay.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+  start:
+    PATH: "button/start.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+  victory:
+    PATH: "button/victory.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+
+  # goto_fight:
+  goto_fight:
     enter:
       PATH: "button/enter.png"
-      THRESHOLD: 0.80
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
       resource:
         PATH: "button/enter/resource.png"
-        THRESHOLD: 0.80
-        TIMEOUT: 5.0
-        INTERVAL: 0.5
+        THRESHOLD: *all_threshold
+        TIMEOUT: *all_timeout
+        INTERVAL: *all_interval
         PA:
           PATH: "button/enter/resource/PA.png"
-          THRESHOLD: 0.80
-          TIMEOUT: 5.0
-          INTERVAL: 0.5
+          THRESHOLD: *all_threshold
+          TIMEOUT: *all_timeout
+          INTERVAL: *all_interval
         MA:
           PATH: "button/enter/resource/MA.png"
-          THRESHOLD: 0.80
-          TIMEOUT: 5.0
-          INTERVAL: 0.5
+          THRESHOLD: *all_threshold
+          TIMEOUT: *all_timeout
+          INTERVAL: *all_interval
           "06":
             PATH: "button/enter/resource/MA/06.png"
-            THRESHOLD: 0.80
-            TIMEOUT: 5.0
-            INTERVAL: 0.5
+            THRESHOLD: *all_threshold
+            TIMEOUT: *all_timeout
+            INTERVAL: *all_interval
         TP:
           PATH: "button/enter/resource/TP.png"
-          THRESHOLD: 0.80
-          TIMEOUT: 5.0
-          INTERVAL: 0.5
+          THRESHOLD: *all_threshold
+          TIMEOUT: *all_timeout
+          INTERVAL: *all_interval
           "06":
             PATH: "button/enter/resource/TP/06.png"
-            THRESHOLD: 0.80
-            TIMEOUT: 5.0
-            INTERVAL: 0.5
-    replay:
-      PATH: "button/replay.png"
-      THRESHOLD: 0.80
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
-    start:
-      PATH: "button/start.png"
-      THRESHOLD: 0.80
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
-    victory:
-      PATH: "button/victory.png"
-      THRESHOLD: 0.80
-      TIMEOUT: 5.0
-      INTERVAL: 0.5
+            THRESHOLD: *all_threshold
+            TIMEOUT: *all_timeout
+            INTERVAL: *all_interval
+        PA:
+          PATH: "button/enter/resource/PA.png"
+          THRESHOLD: *all_threshold
+          TIMEOUT: *all_timeout
+          INTERVAL: *all_interval
+          "07":
+            PATH: "button/enter/resource/PA/07.png"
+            THRESHOLD: *all_threshold
+            TIMEOUT: *all_timeout
+            INTERVAL: *all_interval
+  
+  # goto_reward:
+  goto_reward:
+    task:
+      PATH: "button/task.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+      
+      # 全部领取
+      claim_all:
+        PATH: "button/task/claim_all.png"
+        THRESHOLD: *all_threshold
+        TIMEOUT: *all_timeout
+        INTERVAL: *all_interval
+      # 每日活跃
+      day:
+        PATH: "button/task/day.png"
+        THRESHOLD: *all_threshold
+        TIMEOUT: *all_timeout
+        INTERVAL: *all_interval
+      # 每周活跃
+      week:
+        PATH: "button/task/week.png"
+        THRESHOLD: *all_threshold
+        TIMEOUT: *all_timeout
+        INTERVAL: *all_interval
+      # 获得物品
+      obtained:
+        PATH: "button/task/obtained.png"
+        THRESHOLD: *all_threshold
+        TIMEOUT: *all_timeout
+        INTERVAL: *all_interval
 
   login:
     LOGIN_TARGET:     "login.png"
-    LOGIN_THRESHOLD:  0.90
+    LOGIN_THRESHOLD:  *all_threshold
     LOGIN_TIMEOUT:    120.0
-    LOGIN_INTERVAL:   1
+    LOGIN_INTERVAL:   *all_interval
