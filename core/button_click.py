@@ -49,12 +49,60 @@ def click_enter() -> bool:
     :return: 是否成功点击"入场"按钮
     """
     logger.info("查找并点击\"入场\"按钮")
-    config_find_enter = config["tasks"]["enter"]
+    config_find_enter = config["tasks"]["goto_fight"]["enter"]
     return find_and_click(
         target_path=config_find_enter["PATH"],
         threshold=config_find_enter["THRESHOLD"],
         timeout=config_find_enter["TIMEOUT"],
         interval=config_find_enter["INTERVAL"]
+    )
+
+
+def click_resource() -> bool:
+    """查找并点击“资源”按钮。"""
+    logger.info("查找并点击“资源”按钮")
+    config_find_resource = config["tasks"]["goto_fight"]["enter"]["resource"]
+    return find_and_click(
+        target_path=config_find_resource["PATH"],
+        threshold=config_find_resource["THRESHOLD"],
+        timeout=config_find_resource["TIMEOUT"],
+        interval=config_find_resource["INTERVAL"]
+    )
+
+
+def click_MA() -> bool:
+    """查找并点击“铸币美学”按钮。"""
+    logger.info("查找并点击“铸币美学”按钮")
+    config_find_ma = config["tasks"]["goto_fight"]["enter"]["resource"]["MA"]
+    return find_and_click(
+        target_path=config_find_ma["PATH"],
+        threshold=config_find_ma["THRESHOLD"],
+        timeout=config_find_ma["TIMEOUT"],
+        interval=config_find_ma["INTERVAL"]
+    )
+
+
+def click_TP() -> bool:
+    """查找并点击“尘埃运动”按钮。"""
+    logger.info("查找并点击“尘埃运动”按钮")
+    config_find_tp = config["tasks"]["goto_fight"]["enter"]["resource"]["TP"]
+    return find_and_click(
+        target_path=config_find_tp["PATH"],
+        threshold=config_find_tp["THRESHOLD"],
+        timeout=config_find_tp["TIMEOUT"],
+        interval=config_find_tp["INTERVAL"]
+    )
+
+
+def click_PA() -> bool:
+    """查找并点击“意志解析”按钮。"""
+    logger.info("查找并点击“意志解析”按钮")
+    config_find_pa = config["tasks"]["goto_fight"]["enter"]["resource"]["PA"]
+    return find_and_click(
+        target_path=config_find_pa["PATH"],
+        threshold=config_find_pa["THRESHOLD"],
+        timeout=config_find_pa["TIMEOUT"],
+        interval=config_find_pa["INTERVAL"]
     )
 
 
@@ -92,6 +140,8 @@ def click_victory() -> bool:
     )
 
 if __name__ == "__main__":
+    from core.window import find_open_window
+    find_open_window(title_keywords=["MuMu模拟器"])
     # 1, 仅用于测试 click_return 函数
     # if click_return():
     #     print("成功点击返回按钮")
@@ -103,27 +153,9 @@ if __name__ == "__main__":
     #     print("成功点击主页按钮")
     # else:
     #     print("未找到主页按钮")
-
-    # 3, 仅用于测试 click_enter 函数
-    # if click_enter():
-    #     print("成功点击\"入场\"按钮")
-    # else:
-    #     print("未找到\"入场\"按钮")
-
-    # 4, 仅用于测试 click_resource 函数
-    # if click_resource():
-    #     print("成功点击\"资源\"按钮")
-    # else:
-    #     print("未找到\"资源\"按钮")
-
-    # 5, 仅用于测试 click_PA 函数
-    # if click_PA():
-    #     print("成功点击\"意志解析\"按钮")
-    # else:
-    #     print("未找到\"意志解析\"按钮")
-
-    # 6, 仅用于测试 click_TP 函数
-    if click_TP():
-        print("成功点击\"尘埃运动\"按钮")
+    
+    # 3,仅用于测试 click_start 函数
+    if click_start():
+        print("成功点击开始按钮")
     else:
-        print("未找到\"尘埃运动\"按钮")
+        print("未找到开始按钮")

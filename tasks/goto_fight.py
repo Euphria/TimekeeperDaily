@@ -7,9 +7,9 @@ from core.button_click import (
     click_home,
     click_enter,
     click_resource,
-    click_PA,
     click_MA,
     click_TP,
+    click_PA,
     click_start,
     click_replay,
     click_victory,
@@ -43,12 +43,12 @@ def goto_MA_start() -> bool:
         timeout=config_find_06["TIMEOUT"],
         interval=config_find_06["INTERVAL"]
     ):
-        logger.error("未找到铸币美学 06 按钮")
-        return False
+        # logger.error("未找到铸币美学 06 按钮")
+        # return False
 
-    if not click_start():
-        logger.error("未找到开始按钮")
-        return False
+        if not click_start():
+            logger.error("未找到开始按钮")
+            return False
 
     if not click_replay():
         logger.error("未找到复现按钮")
@@ -101,13 +101,13 @@ def goto_TP_start() -> bool:
         timeout=config_find_06["TIMEOUT"],
         interval=config_find_06["INTERVAL"]
     ):
-        logger.error("未找到06按钮, 无法进入start页面")
-        return False
+        # logger.error("未找到06按钮, 无法进入start页面")
+        # return False
 
-    # 5, 点击开始按钮
-    if not click_start():
-        logger.error("未找到开始按钮, 无法进入复现页面")
-        return False
+        # 5, 点击开始按钮
+        if not click_start():
+            logger.error("未找到开始按钮, 无法进入复现页面")
+            return False
 
     # 6, 点击复现按钮
     if not click_replay():
@@ -152,12 +152,12 @@ def goto_PA_start() -> bool:
         timeout=config_find_07["TIMEOUT"],
         interval=config_find_07["INTERVAL"]
     ):
-        logger.error("未找到意志解析 07 按钮")
-        return False
+        # logger.error("未找到意志解析 07 按钮")
+        # return False
 
-    if not click_start():
-        logger.error("未找到开始按钮")
-        return False
+        if not click_start():
+            logger.error("未找到开始按钮")
+            return False
 
     if not click_replay():
         logger.error("未找到复现按钮")
@@ -180,7 +180,7 @@ if __name__ == "__main__":
     # 仅用于测试 goto_MA_start 函数
     from core.window import find_open_window
     find_open_window(title_keywords=["MuMu模拟器"])
-    if goto_MA_start():
+    if goto_PA_start():
         print("完成任务")
     else:
         print("未能完成任务")

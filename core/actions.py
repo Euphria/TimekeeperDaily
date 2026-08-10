@@ -2,9 +2,6 @@
 
 import time
 
-import cv2
-import numpy as np
-
 from core.capture import Screenshot, capture_screen
 from core.click import click_screen_position
 from core.config import config
@@ -13,19 +10,6 @@ from core.matcher import MatchResult, find_target
 
 
 config_actions = config["core"]["actions"]
-
-
-def _screen_change_ratio(before: Screenshot, after: Screenshot) -> float:
-    """计算两次截图中发生明显变化的像素占比。"""
-    if before.image.shape != after.image.shape:
-        return 1.0
-
-    difference = cv2.absdiff(before.image, after.image)
-    changed_pixels = np.any(
-        difference > config_actions["PIXEL_CHANGE_TOLERANCE"],
-        axis=2,
-    )
-    return float(np.count_nonzero(changed_pixels) / changed_pixels.size)
 
 
 def _wait_for_target_on_screen(
@@ -208,28 +192,28 @@ def find_and_click(
 
     click_deadline = time.monotonic() + timeout
 
-    while True:
+    while time.monotonic() < click_deadline:
         click_screen_position(screen_x, screen_y)
-        time.sleep(config_actions["CLICK_RETRY_INTERVAL"])
-
-        current_screenshot = capture_screen()
-        change_ratio = _screen_change_ratio(screenshot, current_screenshot)
-
-        logger.info(
-            "点击后画面变化比例: target=%s, change_ratio=%.4f, threshold=%.2f",
-            target_path,
-            change_ratio,
-            config_actions["SCREEN_CHANGE_THRESHOLD"],
+        remaining = click_deadline - time.monotonic()
+        disappear_timeout = min(
+            config_actions["CLICK_RETRY_INTERVAL"],
+            max(0.0, remaining),
         )
 
-        if change_ratio >= config_actions["SCREEN_CHANGE_THRESHOLD"]:
-            logger.info("画面已发生明显变化，停止重复点击: target=%s", target_path)
+        if wait_for_target_disappear(
+            target_path=target_path,
+            threshold=threshold,
+            timeout=disappear_timeout,
+            interval=interval,
+        ):
+            logger.info("目标已消失，停止重复点击: target=%s", target_path)
             return True
 
-        if time.monotonic() >= click_deadline:
-            logger.warning(
-                "重复点击后画面仍未达到变化阈值: target=%s, threshold=%.2f",
-                target_path,
-                config_actions["SCREEN_CHANGE_THRESHOLD"],
-            )
-            return False
+        logger.debug("目标仍然存在，继续点击: target=%s", target_path)
+
+    logger.warning(
+        "重复点击后目标仍未消失: target=%s, threshold=%.2f",
+        target_path,
+        threshold,
+    )
+    return False

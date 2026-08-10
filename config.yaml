@@ -1,5 +1,5 @@
 # 全局参数
-All_THRESHOLD: &all_threshold 0.75
+All_THRESHOLD: &all_threshold 0.74
 ALL_TIMEOUT: &all_timeout 10.0
 ALL_INTERVAL: &all_interval 0.3
 
@@ -11,9 +11,12 @@ core:
   window:
     title_keywords:
       - "MuMu模拟器"
+    homepage:
+      PATH: "homepage.png"
+      THRESHOLD: 0.55
   actions:
     CLICK_RETRY_INTERVAL: 1.0
-    SCREEN_CHANGE_THRESHOLD: 0.30
+    SCREEN_CHANGE_THRESHOLD: 0.50
     PIXEL_CHANGE_TOLERANCE: 10
 
 
@@ -103,28 +106,30 @@ tasks:
       INTERVAL: *all_interval
       
       # 全部领取
-      claim_all:
-        PATH: "button/task/claim_all.png"
+      claim:
+        PATH: 
+          - "button/task/claim_all.png"
+          - "button/task/claim.png"
         THRESHOLD: *all_threshold
-        TIMEOUT: *all_timeout
+        TIMEOUT: 1.0
         INTERVAL: *all_interval
       # 每日活跃
       day:
         PATH: "button/task/day.png"
         THRESHOLD: *all_threshold
-        TIMEOUT: *all_timeout
+        TIMEOUT: 1.0
         INTERVAL: *all_interval
       # 每周活跃
       week:
         PATH: "button/task/week.png"
         THRESHOLD: *all_threshold
-        TIMEOUT: *all_timeout
+        TIMEOUT: 1.0
         INTERVAL: *all_interval
       # 获得物品
       obtained:
         PATH: "button/task/obtained.png"
         THRESHOLD: *all_threshold
-        TIMEOUT: *all_timeout
+        TIMEOUT: 3.0
         INTERVAL: *all_interval
 
   login:

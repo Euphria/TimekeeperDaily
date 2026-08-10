@@ -1,13 +1,29 @@
 """项目启动器：按顺序调用 core 和 tasks 中的函数完成日常流程。"""
 
-from core.config import config
-from core.launch import launch_game, close_game
+# core
 from core.logger import logger
+from core.config import config
+from core.launch import (
+    launch_game, 
+    close_game
+)
+from core.window import (
+    is_in_homepage,
+)
 
+# tasks
 from tasks.login import login_game
+from tasks.goto_fight import (
+    goto_PA_start, #意志解析
+    goto_MA_start, #铸币美学
+    goto_TP_start, #尘埃运动
+)
+from tasks.goto_reward import (
+    get_task_reward,
+)
 
+# other
 from time import sleep
-
 
 def main() -> None:
     """
@@ -23,11 +39,33 @@ def main() -> None:
     # 启动游戏
     if not launch_game(keyword=config["core"]["launch"]["launch_keyword"]):
         logger.error("游戏启动失败，终止运行")
+        print("游戏启动失败，终止运行")
         return
 
     # 登录游戏
     if not login_game(config["tasks"]["login"]):
         logger.error("游戏登录失败，终止运行")
+        print("游戏登录失败，终止运行")
+        return
+
+    while not is_in_homepage():
+        logger.info("当前不在游戏主页, 等待用户操作结束, 等待 5 秒后重试")
+        sleep(5)
+
+    # 开始清体力：PA -> MA
+    if not goto_PA_start():
+        logger.error("意志解析任务失败，终止运行")
+        print("意志解析任务失败，终止运行")
+        return
+    if not goto_MA_start():
+        logger.error("铸币美学任务失败，终止运行")
+        print("铸币美学任务失败，终止运行")
+        return
+
+    # 开始领奖励
+    if not get_task_reward():
+        logger.error("领取奖励任务失败，终止运行")
+        print("领取奖励任务失败，终止运行")
         return
 
     # 关闭游戏

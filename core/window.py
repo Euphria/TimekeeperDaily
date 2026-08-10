@@ -160,6 +160,36 @@ def activate_window(window: WindowInfo) -> bool:
         return False
 
 
+def is_in_homepage() -> bool:
+    """单次判断当前游戏窗口是否处于主页。"""
+    from core.capture import capture_window
+    from core.config import config
+    from core.matcher import find_target
+
+    window_config = config["core"]["window"]
+    window = find_open_window(
+        title_keywords=window_config["title_keywords"],
+    )
+
+    if window is None:
+        logger.info("未找到游戏窗口，当前不在主页")
+        return False
+
+    homepage_config = window_config["homepage"]
+    result = find_target(
+        image=capture_window(window),
+        target_relative_path=homepage_config["PATH"],
+        threshold=homepage_config["THRESHOLD"],
+    )
+
+    logger.info(
+        "主页判断完成: is_in_homepage=%s, confidence=%.4f",
+        result.found,
+        result.confidence,
+    )
+    return result.found
+
+
 
 if __name__ == "__main__":
     from pathlib import Path
@@ -172,15 +202,17 @@ if __name__ == "__main__":
     window = find_open_window(title_keywords=["MuMu模拟器"])
     print(f"找到窗口: {window}")
 
-    def show_window(window: WindowInfo) -> None:
-        """
-        调试函数：直接截取并显示指定窗口。
+    print("Is Homepage?", is_in_homepage())
 
-        仅用于 window.py 测试，不依赖其他模块。
-        """
-        image = capture_window(window)
+    # def show_window(window: WindowInfo) -> None:
+    #     """
+    #     调试函数：直接截取并显示指定窗口。
 
-        show_image(image, window.title)
+    #     仅用于 window.py 测试，不依赖其他模块。
+    #     """
+    #     image = capture_window(window)
 
-    if window is not None:
-        show_window(window)
+    #     show_image(image, window.title)
+
+    # if window is not None:
+    #     show_window(window)

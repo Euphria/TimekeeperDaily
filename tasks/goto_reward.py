@@ -11,45 +11,82 @@ from core.logger import logger
 from core.config import config
 from core.actions import find_and_click
 
+def click_claim(config_find_reward):
+    """
+    点击领取奖励按钮
+
+    1, 按顺序从config["tasks"]["goto_reward"]["task"]["claim"]的path中查找领取按钮
+    2, 点击后确认obtained
+    
+    """
+    logger.info("查找并点击领取按钮")
+    config_find_claim = config_find_reward["claim"]
+    Path_list = config_find_claim["PATH"]
+    for path in Path_list:
+        if find_and_click(
+            target_path=path,
+            threshold=config_find_claim["THRESHOLD"],
+            timeout=config_find_claim["TIMEOUT"],
+            interval=config_find_claim["INTERVAL"]
+        ):
+            logger.info(f"成功点击领取按钮: {path}")
+            config_obtained = config_find_reward["obtained"]
+            if not find_and_click(
+                target_path=config_obtained["PATH"],
+                threshold=config_obtained["THRESHOLD"],
+                timeout=config_obtained["TIMEOUT"],
+                interval=config_obtained["INTERVAL"]
+            ):
+                logger.debug("未找到获得物品按钮")
+            return 
+        else:
+            logger.warning(f"未找到领取按钮: {path}, 尝试下一个路径")
+
+    logger.debug("所有领取按钮路径均未找到")
+    return
+
 def get_task_reward() -> bool:
-    """从主页进入奖励页面, 领取奖励后返回主页。"""
-    logger.info("开始从主页进入奖励页面")
+    """从主页进入任务页面, 领取奖励后返回主页。"""
+    logger.info("开始从主页进入任务页面")
     config_find_reward = config["tasks"]["goto_reward"]["task"]
 
-    # 进入奖励页面
+    # 进入任务页面
     if not find_and_click(
         target_path=config_find_reward["PATH"],
         threshold=config_find_reward["THRESHOLD"],
         timeout=config_find_reward["TIMEOUT"],
         interval=config_find_reward["INTERVAL"]
     ):
-        logger.error("未找到奖励按钮，无法进入奖励页面")
-        print("未找到奖励按钮，无法进入奖励页面")
+        logger.error("未找到任务按钮，无法进入任务页面")
+        print("未找到任务按钮，无法进入任务页面")
         return False
 
-    # 全部领取奖励
-    config_claim_all = config_find_reward["claim_all"]
+    # 进入每日活跃页面
+    config_day = config_find_reward["day"]
     if not find_and_click(
-        target_path=config_claim_all["PATH"],
-        threshold=config_claim_all["THRESHOLD"],
-        timeout=config_claim_all["TIMEOUT"],
-        interval=config_claim_all["INTERVAL"]
+        target_path=config_day["PATH"],
+        threshold=config_day["THRESHOLD"],
+        timeout=config_day["TIMEOUT"],
+        interval=config_day["INTERVAL"]
     ):
-        logger.error("未找到领取奖励按钮，无法领取奖励")
-        print("未找到领取奖励按钮，无法领取奖励")
-        return False
+        logger.error("无法进入每日活跃页面")
+        print("无法进入每日活跃页面")
 
-    # 点击obtained并退回到homepage
-    config_obtained = config_find_reward["obtained"]
+    # 全部领取奖励 (日活)
+    click_claim(config_find_reward)
+
+    # 进入周活页面
+    config_week = config_find_reward["week"]
     if not find_and_click(
-        target_path=config_obtained["PATH"],
-        threshold=config_obtained["THRESHOLD"],
-        timeout=config_obtained["TIMEOUT"],
-        interval=config_obtained["INTERVAL"]
+        target_path=config_week["PATH"],
+        threshold=config_week["THRESHOLD"],
+        timeout=config_week["TIMEOUT"],
+        interval=config_week["INTERVAL"]
     ):
-        logger.error("未找到获得物品按钮，无法退回到主页")
-        print("未找到获得物品按钮，无法退回到主页")
-        return False
+        logger.error("无法进入周活页面")
+
+    # 全部领取奖励 (周活)
+    click_claim(config_find_reward)
 
     if not click_return():
         logger.error("未找到返回按钮，无法返回主页")
