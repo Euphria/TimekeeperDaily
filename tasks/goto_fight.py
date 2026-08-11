@@ -19,6 +19,11 @@ from core.config import config
 from core.actions import find_and_click
 from time import sleep
 
+start_target = {
+    "next_target": config["tasks"]["start"]["PATH"],
+    "threshold": config["tasks"]["start"]["THRESHOLD"],
+}
+
 # 铸币美学
 def goto_MA_start() -> bool:
     """从主页进入“铸币美学”，完成一次关卡并返回主页。"""
@@ -41,14 +46,15 @@ def goto_MA_start() -> bool:
         target_path=config_find_06["PATH"],
         threshold=config_find_06["THRESHOLD"],
         timeout=config_find_06["TIMEOUT"],
-        interval=config_find_06["INTERVAL"]
+        interval=config_find_06["INTERVAL"],
+        next_target=start_target,
     ):
-        # logger.error("未找到铸币美学 06 按钮")
-        # return False
+        logger.error("未找到铸币美学 06 按钮")
+        return False
 
-        if not click_start():
-            logger.error("未找到开始按钮")
-            return False
+    if not click_start():
+        logger.error("未找到开始按钮")
+        return False
 
     if not click_replay():
         logger.error("未找到复现按钮")
@@ -99,15 +105,16 @@ def goto_TP_start() -> bool:
         target_path=config_find_06["PATH"],
         threshold=config_find_06["THRESHOLD"],
         timeout=config_find_06["TIMEOUT"],
-        interval=config_find_06["INTERVAL"]
+        interval=config_find_06["INTERVAL"],
+        next_target=start_target,
     ):
-        # logger.error("未找到06按钮, 无法进入start页面")
-        # return False
+        logger.error("未找到06按钮, 无法进入start页面")
+        return False
 
-        # 5, 点击开始按钮
-        if not click_start():
-            logger.error("未找到开始按钮, 无法进入复现页面")
-            return False
+    # 5, 点击开始按钮
+    if not click_start():
+        logger.error("未找到开始按钮, 无法进入复现页面")
+        return False
 
     # 6, 点击复现按钮
     if not click_replay():
@@ -150,14 +157,15 @@ def goto_PA_start() -> bool:
         target_path=config_find_07["PATH"],
         threshold=config_find_07["THRESHOLD"],
         timeout=config_find_07["TIMEOUT"],
-        interval=config_find_07["INTERVAL"]
+        interval=config_find_07["INTERVAL"],
+        next_target=start_target,
     ):
-        # logger.error("未找到意志解析 07 按钮")
-        # return False
+        logger.error("未找到意志解析 07 按钮")
+        return False
 
-        if not click_start():
-            logger.error("未找到开始按钮")
-            return False
+    if not click_start():
+        logger.error("未找到开始按钮")
+        return False
 
     if not click_replay():
         logger.error("未找到复现按钮")
@@ -177,10 +185,10 @@ def goto_PA_start() -> bool:
     return True
 
 if __name__ == "__main__":
-    # 仅用于测试 goto_MA_start 函数
+    # 仅用于测试 goto_TP_start 函数
     from core.window import find_open_window
     find_open_window(title_keywords=["MuMu模拟器"])
-    if goto_PA_start():
+    if goto_TP_start():
         print("完成任务")
     else:
         print("未能完成任务")

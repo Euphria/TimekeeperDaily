@@ -153,6 +153,7 @@ def find_and_click(
     threshold: float = 0.80,
     timeout: float = 60.0,
     interval: float = 1.0,
+    next_target: dict | None = None,
 ) -> bool:
     """
     全屏查找目标图片，并点击匹配区域的中心位置。
@@ -193,6 +194,13 @@ def find_and_click(
     click_deadline = time.monotonic() + timeout
 
     while time.monotonic() < click_deadline:
+        if next_target and find_target(
+            image=capture_screen().image,
+            target_relative_path=next_target["next_target"],
+            threshold=next_target["threshold"],
+        ).found:
+            return True
+
         click_screen_position(screen_x, screen_y)
         remaining = click_deadline - time.monotonic()
         disappear_timeout = min(
