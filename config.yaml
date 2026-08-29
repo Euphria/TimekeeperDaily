@@ -48,6 +48,11 @@ tasks:
     THRESHOLD: *all_threshold
     TIMEOUT: *all_timeout
     INTERVAL: *all_interval
+  role:
+    PATH: "role.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
 
   # goto_fight:
   goto_fight:
@@ -131,6 +136,28 @@ tasks:
         THRESHOLD: *all_threshold
         TIMEOUT: 3.0
         INTERVAL: *all_interval
+
+  # goto_wilderness:
+  goto_wilderness:
+    PATH: "button/wilderness.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+    1:
+      PATH: "button/wilderness/1.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+    2:
+      PATH: "button/wilderness/2.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+    3:
+      PATH: "button/wilderness/3.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
 
   login:
     LOGIN_TARGET:     "login.png"

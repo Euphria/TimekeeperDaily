@@ -139,6 +139,29 @@ def click_victory() -> bool:
         interval=config_find_victory["INTERVAL"]
     )
 
+def click_wilderness() -> bool:
+    """查找并点击“不休荒原”按钮。"""
+    logger.info("查找并点击\"不休荒原\"按钮")
+    config_find_wilderness = config["tasks"]["goto_wilderness"]
+    return find_and_click(
+        target_path=config_find_wilderness["PATH"],
+        threshold=config_find_wilderness["THRESHOLD"],
+        timeout=config_find_wilderness["TIMEOUT"],
+        interval=config_find_wilderness["INTERVAL"]
+    )
+
+def click_role() -> bool:
+    """查找并点击角色。"""
+    logger.info("查找并点击角色")
+    config_find_role = config["tasks"]["role"]
+    return find_and_click(
+        target_path=config_find_role["PATH"],
+        threshold=config_find_role["THRESHOLD"],
+        timeout=config_find_role["TIMEOUT"],
+        interval=config_find_role["INTERVAL"],
+        click_once=True
+    )
+
 if __name__ == "__main__":
     from core.window import find_open_window
     find_open_window(title_keywords=["MuMu模拟器"])
@@ -155,7 +178,19 @@ if __name__ == "__main__":
     #     print("未找到主页按钮")
     
     # 3,仅用于测试 click_start 函数
-    if click_start():
-        print("成功点击开始按钮")
+    # if click_start():
+    #     print("成功点击开始按钮")
+    # else:
+    #     print("未找到开始按钮")
+
+    # 4,仅用于测试 click_wilderness 函数
+    # if click_wilderness():
+    #     print("成功点击不休荒原按钮")
+    # else:
+    #     print("未找到不休荒原按钮")
+
+    # 5,仅用于测试 click_role 函数
+    if click_role():
+        print("成功点击角色")
     else:
-        print("未找到开始按钮")
+        print("未找到角色")

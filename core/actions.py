@@ -154,6 +154,7 @@ def find_and_click(
     timeout: float = 60.0,
     interval: float = 1.0,
     next_target: dict | None = None,
+    click_once: bool = False,
 ) -> bool:
     """
     全屏查找目标图片，并点击匹配区域的中心位置。
@@ -202,6 +203,10 @@ def find_and_click(
             return True
 
         click_screen_position(screen_x, screen_y)
+
+        if click_once:
+            return True
+
         remaining = click_deadline - time.monotonic()
         disappear_timeout = min(
             config_actions["CLICK_RETRY_INTERVAL"],

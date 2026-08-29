@@ -7,6 +7,11 @@ from core.launch import (
     launch_game, 
     close_game
 )
+
+from core.button_click import (
+    click_role
+)
+
 from core.window import (
     is_in_homepage,
 )
@@ -20,6 +25,9 @@ from tasks.goto_fight import (
 )
 from tasks.goto_reward import (
     get_task_reward,
+)
+from tasks.goto_wilderness import (
+    goto_wilderness
 )
 
 # other
@@ -52,6 +60,15 @@ def main() -> None:
         logger.info("当前不在游戏主页, 等待用户操作结束, 等待 5 秒后重试")
         sleep(5)
 
+    # 点一下小人加好感
+    click_role()
+
+    # 开始前往不休荒原
+    # if not goto_wilderness():
+    #     logger.error("前往不休荒原失败，终止运行")
+    #     print("前往不休荒原失败，终止运行")
+    #     return
+
     # 开始清体力：PA -> MA
     if not goto_PA_start():
         logger.error("意志解析任务失败，终止运行")
@@ -74,6 +91,7 @@ def main() -> None:
     # if not close_game(keyword=config["core"]["launch"]["close_keyword"]):
     #     logger.error("游戏关闭失败，终止运行")
     #     return
+
     print("游戏已关闭, Timekeeper Daily 运行结束")
     logger.info("游戏已关闭, Timekeeper Daily 运行结束")
 
