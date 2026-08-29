@@ -63,7 +63,7 @@ def main() -> None:
     # 点一下小人加好感
     click_role()
 
-    # 开始前往不休荒原
+    # 开始前往不休荒原 (稍微有点问题, 先注释掉)
     # if not goto_wilderness():
     #     logger.error("前往不休荒原失败，终止运行")
     #     print("前往不休荒原失败，终止运行")

@@ -150,6 +150,17 @@ def click_wilderness() -> bool:
         interval=config_find_wilderness["INTERVAL"]
     )
 
+def click_hoho() -> bool:
+    """查找并点击“吼吼点唱机”按钮。"""
+    logger.info("查找并点击吼吼点唱机按钮")
+    config_find_hoho = config["tasks"]["goto_hoho"]
+    return find_and_click(
+        target_path=config_find_hoho["PATH"],
+        threshold=config_find_hoho["THRESHOLD"],
+        timeout=config_find_hoho["TIMEOUT"],
+        interval=config_find_hoho["INTERVAL"]
+    )
+
 def click_role() -> bool:
     """查找并点击角色。"""
     logger.info("查找并点击角色")

@@ -62,15 +62,15 @@ def get_task_reward() -> bool:
         return False
 
     # 进入每日活跃页面
-    config_day = config_find_reward["day"]
-    if not find_and_click(
-        target_path=config_day["PATH"],
-        threshold=config_day["THRESHOLD"],
-        timeout=config_day["TIMEOUT"],
-        interval=config_day["INTERVAL"]
-    ):
-        logger.error("无法进入每日活跃页面")
-        print("无法进入每日活跃页面")
+    # config_day = config_find_reward["day"]
+    # if not find_and_click(
+    #     target_path=config_day["PATH"],
+    #     threshold=config_day["THRESHOLD"],
+    #     timeout=config_day["TIMEOUT"],
+    #     interval=config_day["INTERVAL"]
+    # ):
+    #     logger.error("无法进入每日活跃页面")
+    #     print("无法进入每日活跃页面")
 
     # 全部领取奖励 (日活)
     click_claim(config_find_reward)

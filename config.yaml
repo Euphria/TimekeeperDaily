@@ -159,6 +159,33 @@ tasks:
       TIMEOUT: *all_timeout
       INTERVAL: *all_interval
 
+  # goto_hoho:
+  goto_hoho:
+    PATH: "button/hoho.png"
+    THRESHOLD: *all_threshold
+    TIMEOUT: *all_timeout
+    INTERVAL: *all_interval
+    reward:
+      PATH: "button/hoho/reward.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+    claim_all:
+      PATH: "button/hoho/claim_all.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+    thinking:
+      PATH: "button/hoho/thinking.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: 1.0
+      INTERVAL: *all_interval
+    upgrade:
+      PATH: "button/hoho/upgrade.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
+
   login:
     LOGIN_TARGET:     "login.png"
     LOGIN_THRESHOLD:  *all_threshold
