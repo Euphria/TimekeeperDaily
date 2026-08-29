@@ -29,6 +29,9 @@ from tasks.goto_reward import (
 from tasks.goto_wilderness import (
     goto_wilderness
 )
+from tasks.goto_hoho import (
+    goto_hoho
+)
 
 # other
 from time import sleep
@@ -83,6 +86,12 @@ def main() -> None:
     if not get_task_reward():
         logger.error("领取奖励任务失败，终止运行")
         print("领取奖励任务失败，终止运行")
+        return
+
+    # 开始前往吼吼点唱机 (还未进行完全流程测试)
+    if not goto_hoho():
+        logger.error("吼吼点唱机任务失败，终止运行")
+        print("吼吼点唱机任务失败，终止运行")
         return
 
     # 关闭游戏
