@@ -1,6 +1,6 @@
 # Timekeeper Daily
 
-用于自动启动游戏，并通过全屏图像匹配完成登录流程。
+用于自动启动游戏，并通过全屏图像匹配完成日活流程。
 
 - [x] 启动1999客户端
 - [x] 成功login
@@ -11,10 +11,10 @@
 - [x] 建立从 **资源** 到 **铸币**，**尘埃**，**意志** 的操作链
 - [x] 建立完善战斗接口（进入，等待，退出到homepage）
 - [x] 建立领取任务奖励接口（日活，周活）
-- [ ] homepage点角色加好感
-- [ ] 建立 **点唱机** 
-- [ ] 任务及奖励领取接口
-- [ ] 添加 **不休荒原** 操作链
+- [x] homepage点角色加好感
+- [x] 建立 **点唱机** 奖励领取路径
+- [x] 添加 **不休荒原** 操作链
+- [x] 制作一个刷材料范本
 
 ## 环境
 
@@ -27,7 +27,7 @@
 
 ```powershell
 python -m pip install --upgrade pip
-pip install pywin32 mss opencv-python numpy pydirectinput pyyaml
+pip install -e .
 ```
 
 ## 运行

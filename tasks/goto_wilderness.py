@@ -10,17 +10,19 @@
 
 from core.actions import find_and_click
 from core.button_click import (
-    click_return,
+    click_home,
     click_wilderness,
 )
 from core.config import config
 from core.logger import logger
+from time import sleep
 
 def _click_k() -> bool:
     """依次点击不休荒原的三个奖励按钮"""
     logger.info("开始依次点击不休荒原的三个奖励按钮")
     wilderness_config = config["tasks"]["goto_wilderness"]
     for i in range(1, 4):
+        sleep(1)  # 等待界面加载
         button_key = i
         button_config = wilderness_config[button_key]
         if not find_and_click(
@@ -46,7 +48,7 @@ def goto_wilderness() -> bool:
         logger.error("在不休荒原中未找到奖励按钮")
         return False
 
-    if not click_return():
+    if not click_home():
         logger.error("未找到返回按钮，无法从不休荒原返回主页")
         return False
 

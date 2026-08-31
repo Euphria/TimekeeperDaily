@@ -14,6 +14,11 @@ core:
     homepage:
       PATH: "homepage.png"
       THRESHOLD: 0.55
+    update:
+      PATH: "update.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: 120.0
+      INTERVAL: 5.0
   actions:
     CLICK_RETRY_INTERVAL: 1.0
     SCREEN_CHANGE_THRESHOLD: 0.50
@@ -180,6 +185,11 @@ tasks:
       THRESHOLD: *all_threshold
       TIMEOUT: 1.0
       INTERVAL: *all_interval
+    count:
+      PATH: "button/hoho/count.png"
+      THRESHOLD: *all_threshold
+      TIMEOUT: *all_timeout
+      INTERVAL: *all_interval
     upgrade:
       PATH: "button/hoho/upgrade.png"
       THRESHOLD: *all_threshold
@@ -190,4 +200,4 @@ tasks:
     LOGIN_TARGET:     "login.png"
     LOGIN_THRESHOLD:  *all_threshold
     LOGIN_TIMEOUT:    120.0
-    LOGIN_INTERVAL:   *all_interval
+    LOGIN_INTERVAL:   1.0

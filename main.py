@@ -67,10 +67,10 @@ def main() -> None:
     click_role()
 
     # 开始前往不休荒原 (稍微有点问题, 先注释掉)
-    # if not goto_wilderness():
-    #     logger.error("前往不休荒原失败，终止运行")
-    #     print("前往不休荒原失败，终止运行")
-    #     return
+    if not goto_wilderness():
+        logger.error("前往不休荒原失败，终止运行")
+        print("前往不休荒原失败，终止运行")
+        return
 
     # 开始清体力：PA -> MA
     if not goto_PA_start():

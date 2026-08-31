@@ -190,6 +190,31 @@ def is_in_homepage() -> bool:
     return result.found
 
 
+def is_updating() -> bool:
+    """等待更新画面消失，并判断超时后是否仍在更新。
+
+    如果更新画面一开始就没有出现，或者在超时前消失，返回 False。
+    超时后更新画面仍然存在时返回 True。
+    """
+    from core.actions import wait_for_target_disappear
+    from core.config import config
+
+    update_config = config["core"]["window"]["update"]
+    logger.info("检查游戏是否正在更新")
+
+    update_finished = wait_for_target_disappear(
+        target_path=update_config["PATH"],
+        threshold=update_config["THRESHOLD"],
+        timeout=update_config["TIMEOUT"],
+        interval=update_config["INTERVAL"],
+    )
+
+    if update_finished:
+        logger.info("当前未在更新，或更新已结束")
+        return False
+
+    logger.warning("等待更新结束超时，当前仍在更新")
+    return True
 
 if __name__ == "__main__":
     from pathlib import Path

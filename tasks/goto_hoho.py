@@ -5,6 +5,8 @@ from core.button_click import click_hoho, click_return
 from core.config import config
 from core.logger import logger
 
+from time import sleep
+
 
 def click_thinking_if_present() -> bool:
     """如果出现“再想想”按钮则点击。"""
@@ -23,6 +25,8 @@ def goto_hoho() -> bool:
     if not click_hoho():
         logger.error("未找到吼吼点唱机按钮")
         return False
+
+    sleep(2)  # 等待吼吼点唱机界面加载
     
     claim_all_config = hoho_config["claim_all"]
     if find_and_click(
@@ -67,7 +71,20 @@ def goto_hoho() -> bool:
         logger.debug("所有领取按钮路径均未找到")
         return False
 
-    click_thinking_if_present()
+    if click_thinking_if_present():
+        logger.info("点击了“再想想”按钮")
+    else:
+        count_config = hoho_config["count"]
+        if not find_and_click(
+            target_path=count_config["PATH"],
+            threshold=count_config["THRESHOLD"],
+            timeout=count_config["TIMEOUT"],
+            interval=count_config["INTERVAL"],
+            click_once=True,
+        ):
+            logger.error("未找到“再想想”或计数按钮")
+            return False
+        logger.info("点击了计数按钮")
 
     if not click_return():
         logger.error("未找到返回按钮，无法从吼吼点唱机返回主页")
