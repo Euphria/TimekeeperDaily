@@ -22,7 +22,7 @@ def _click_k() -> bool:
     logger.info("开始依次点击不休荒原的三个奖励按钮")
     wilderness_config = config["tasks"]["goto_wilderness"]
     for i in range(1, 4):
-        sleep(1)  # 等待界面加载
+        sleep(1.5)  # 等待界面加载
         button_key = i
         button_config = wilderness_config[button_key]
         if not find_and_click(
